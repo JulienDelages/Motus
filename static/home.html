@@ -1,0 +1,79 @@
+<body>
+    <head>
+        <link rel="stylesheet" href="colors.css">
+    </head>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<body>
+    <h1>My motus App</h1>
+    <button onclick="document.location='/score.html'">Score</button><br></br>
+    <form>
+        <label for="lname">Your Text:</label><br>
+        <input type="text" id="user_word" name="fname" value=""><br></br>
+        <input type="button" value="Submit" id="submit">
+    </form>
+
+    <div id="result"></div>  
+    <script>
+        var word_to_guess = "";
+        $.get( "/word", function( word ) {
+            word_to_guess = word.trim().toUpperCase()
+        });
+        var found = true
+        var button = document.getElementById('submit')
+        button.addEventListener('click', submit)
+
+        function submit(){
+            var user_word = $('#user_word').val().toUpperCase()
+            if (word_to_guess.length != user_word.length){
+                found = false
+                alert('Error, not the same length')
+            }
+            else{
+                var split_truth = word_to_guess.split('')
+                var split_user = user_word.split('')
+                for (let i = 0; i < user_word.length; i++){
+                    if (split_user[i] == split_truth[i]){
+                        span = document.createElement('span')
+                        span.className = 'correct'
+                        if (i == user_word.length - 1){
+                            span.innerHTML = split_user[i] + '<br />'
+                        }
+                        else{
+                            span.innerHTML = split_user[i]
+                        }
+                        document.getElementById('result').appendChild(span)
+                    }
+                    else if (split_truth.includes(split_user[i])){
+                        span = document.createElement('span')
+                        span.className = 'almost'
+                        found = false
+                        if (i == user_word.length - 1){
+                            span.innerHTML = split_user[i] + '<br />'
+                        }                    
+                        else{
+                            span.innerHTML = split_user[i]
+                        }
+                        document.getElementById('result').appendChild(span)
+                    }
+                    else{
+                        span = document.createElement('span')
+                        span.className = 'nothing'
+                        found = false
+                        if (i == user_word.length - 1){
+                            span.innerHTML = split_user[i] + '<br />'
+                        }                    
+                        else{
+                            span.innerHTML = split_user[i]
+                        }
+                        document.getElementById('result').appendChild(span)
+                    }
+                    
+                }
+            }
+            if (found == true){
+                alert('Success')
+            }         
+        }
+    </script>
+</body>

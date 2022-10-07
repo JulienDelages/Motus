@@ -1,0 +1,21 @@
+.correct{
+    background: green;
+    font-size: 30px;
+    font-family: 'Helvetica';
+}
+
+.almost{
+    background: yellow;
+    font-size: 30px;
+    font-family: 'Helvetica';
+}
+
+.nothing{
+    background: white;
+    font-size: 30px;
+    font-family: 'Helvetica';
+}
+
+.container{
+    text-align: center;
+}
