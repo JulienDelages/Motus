@@ -2,7 +2,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/JulienDelages/Motus">
+  <a href="https://github.com/JulienDelages/Tosum">
     <img src="images/TOSUM.png" alt="Logo" width="100" height="100">
   </a>
 
@@ -11,7 +11,7 @@
   <p align="center">
     Inspired by <a href="https://sutom.nocle.fr"><strong>SOTUM</strong></a> website
     <br />
-    <a href="https://github.com/JulienDelages/Motus"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/JulienDelages/Tosum"><strong>Explore the docs »</strong></a>
 </div>
 
 ### Description 
@@ -48,7 +48,7 @@ sequenceDiagram;
 
 1. Clone the repo
     ```sh
-    git clone https://github.com/JulienDelages/Motus.git
+    git clone https://github.com/JulienDelages/Tosum.git
     ```
 2. Install NPM packages
     ```sh
