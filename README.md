@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/JulienDelages/Tosum">
-    <img src="static/images/TOSUM.png" alt="Logo" width="100" height="100">
+    <img src="tosum_app/static/images/TOSUM.png" alt="Logo" width="100" height="100">
   </a>
 
 <h3 align="center">TOSUM</h3>
