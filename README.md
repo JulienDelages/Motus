@@ -16,8 +16,32 @@
 
 ### Description 
 
-Microservice course's project on reproducing the <a href="https://sutom.nocle.fr"><strong>SOTUM</strong></a> website.
+Microservice course's project on reproducing the <a href="https://sutom.nocle.fr"><strong>SOTUM</strong></a> website. This project is composed by 3 micro-services:
+* A login api that allow the user to create or log in into an account.
+* The TOSUM app which consist of the reproduction of the MOTUS or WORDLE game. Each day you have a random word to find with a given amount of try. If the word you entered has a letter at the right place, its color become green, if it is in the word but not at the right place, its color become yellow, otherwise its stays gray.
+* A score api that shows the user its statistics from his past games.
 
+#### Authentification
+```mermaid
+sequenceDiagram
+    Client->>+Log in Page: gives username/login
+    Log in Page->>+auth.js: /get_user
+    auth.js->>auth.js: Check user info (/check_login)
+    alt login is correct
+        auth.js->>+Client: Redirects to TOSUM app
+    else not Logged in
+        auth.js->>+Client: Redirects to register page
+    end
+    Client->>+Register Page: gives username/login
+    Register Page->>+auth.js: /get_user
+    auth.js->>auth.js: check user info
+    alt User info already exist
+        auth.js->>+Client: Redirects to Log in page
+    else User info do not exist
+        auth.js->>auth.js: save the info (/register)
+        auth.js->>+Client: Redirects to TOSUM app
+    end
+```
 #### TOSUM game
 ```mermaid
 
@@ -26,21 +50,6 @@ Microservice course's project on reproducing the <a href="https://sutom.nocle.fr
 #### Score
 ```mermaid
 
-```
-
-#### Authentification
-```mermaid
-sequenceDiagram
-    Client->>+auth.js: /get_user
-    loop
-        auth.js->>auth.js: Check if user is logged in
-    end
-    alt is Logged in
-        auth.js->>+Client: Redirects to mainapp
-    else not Logged in
-        auth.js->>+Client: Redirects to register page
-    end
-    auth.js-->>Client: username
 ```
 
 ### Installation
