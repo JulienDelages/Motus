@@ -16,12 +16,12 @@
 
 ### Description 
 
-Microservice course's project on reproducing the <a href="https://sutom.nocle.fr"><strong>SOTUM</strong></a> website. This project is composed by 3 micro-services:
+Microservice course's project on reproducing the <a href="https://sutom.nocle.fr"><strong>SOTUM</strong></a> website.
+<br>
+This project is composed by 3 micro-services:
 * A login api that allow the user to create or log in into an account.
-* The TOSUM app which consist of the reproduction of the MOTUS or WORDLE game. Each day you have a random word to find with a given amount of try. If the word you entered has a letter at the right place, its color become green, if it is in the word but not at the right place, its color become yellow, otherwise its stays gray.
-* A score api that shows the user its statistics from his past games.
-
 #### Authentification
+Here is the sequence diagram explaining how the authentification works.
 ```mermaid
 sequenceDiagram
     Client->>+Log in Page: Gives username/login
@@ -43,7 +43,9 @@ sequenceDiagram
         auth.js->>+Client: Redirects to TOSUM app
     end
 ```
+* The TOSUM app which consist of the reproduction of the MOTUS or WORDLE game. Each day you have a random word to find with a given amount of try. If the word you entered has a letter at the right place, its color become green, if it is in the word but not at the right place, its color become yellow, otherwise its stays gray.
 #### TOSUM game
+Here is the sequence diagram explaining how the game works.
 ```mermaid
 sequenceDiagram
     auth.js->>+index.js: Get the user id (/get_user)
@@ -63,7 +65,9 @@ sequenceDiagram
     end
 ```
 
+* A score api that shows the user its statistics from his past games.
 #### Score
+Here is the sequence diagram explaining how the statistic api works.
 ```mermaid
 sequenceDiagram
     auth.js->>+node.js: Get the user id (/get_user)
