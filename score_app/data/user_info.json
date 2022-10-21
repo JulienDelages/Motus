@@ -1,0 +1,39 @@
+{
+    "Julien": {
+        "TALENTUEUX": {
+            "nb_try": 4,
+            "found": true
+        },
+        "BISCUIT": {
+            "nb_try": 6,
+            "found": false
+        },
+        "VEULENT": {
+            "nb_try": 4,
+            "found": false
+        }
+    },
+    "Fedi": {
+        "TALENTUEUX": {
+            "nb_try": 3,
+            "found": true
+        },
+        "BISCUIT": {
+            "nb_try": 2,
+            "found": true
+        }
+    },
+    "delagesjul": {
+        "VEULENT": {
+            "nb_try": 5,
+            "found": true
+        }
+    },
+    "judel": {},
+    "judela": {
+        "VEULENT": {
+            "nb_try": 4,
+            "found": true
+        }
+    }
+}

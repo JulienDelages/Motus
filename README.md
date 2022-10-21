@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/JulienDelages/Tosum">
-    <img src="images/TOSUM.png" alt="Logo" width="100" height="100">
+    <img src="static/images/TOSUM.png" alt="Logo" width="100" height="100">
   </a>
 
 <h3 align="center">TOSUM</h3>
@@ -18,35 +18,29 @@
 
 Microservice course's project on reproducing the <a href="https://sutom.nocle.fr"><strong>SOTUM</strong></a> website.
 
+#### TOSUM game
+```mermaid
+
+```
+
+#### Score
+```mermaid
+
+```
+
+#### Authentification
 ```mermaid
 sequenceDiagram
-    Client->>+Server: HTTP Request
-    Server->>+Client: tosum.js
-    Note left of Client: Waiting for sign-up or log in
-    alt Client chose to sign-up
-        Client->>Server: Sign-up
-        Server->>DB_Info: Send username + password
-        DB_Info->>DB_Info: Checking username + password
-        alt Username is unique
-            DB_Info->>Server: Username does not exist
-            Server->>DB_Info: Save the username + password
-            Server->>Client: alert "account created"
-        else Username already exist
-        DB_Info->>Server: Username already exist
-        Server->>Client: Show a warning about username 
-        end
-    else Client chose to sign in
-        Client->>Server: Sign in
-        Server->>DB_Info: Send username + login
-        DB_Info->>DB_Info: Checking username + login
-        alt Login data is correct
-            DB_Info->>Server: User login accepted
-            Server->>Client: Successful login
-        else Login data is incorrect
-        DB_Info->>Server: User login denied
-        Server->>Client: Show a warning about username and clear the field
-        end
+    Client->>+auth.js: /get_user
+    loop
+        auth.js->>auth.js: Check if user is logged in
     end
+    alt is Logged in
+        auth.js->>+Client: Redirects to mainapp
+    else not Logged in
+        auth.js->>+Client: Redirects to register page
+    end
+    auth.js-->>Client: username
 ```
 
 ### Installation
@@ -55,15 +49,13 @@ sequenceDiagram
     ```sh
     git clone https://github.com/JulienDelages/Tosum.git
     ```
-2. Install NPM packages
-    ```sh
-    npm install
-    ```
+2. Make sure to download docker <a href="https://docs.docker.com/desktop/install/windows-install/"><strong>here</strong></a>    
+    
 3. Mount the app
     ```
-    node tosum.js
+    docker-compose up -d
     ``` 
-4. Go to http://localhost:3000
+4. Go to http://localhost:4000
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

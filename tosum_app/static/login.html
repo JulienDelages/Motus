@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>SUTOM - Login</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="tosum_app/static/stylesheet/login.css">
+
+</head>
+
+<body style="font-size:45px; background-color: rgba(18, 18, 217, 0.733); color: white;">
+    <div class="container" style="text-align: center;">
+        <div class="row" style="background-color: white; border-radius: 20px;">
+            <h1 style="color:rgba(58, 53, 53, 0.733);">LOGIN</h1>
+        </div>
+        <br/>
+        <div class="row">
+            <form id="input" onsubmit="return submit_response()">
+
+                <label>Nom d'utilisateur :</label>
+                <input type="text" id="user" placeholder="Nom d'utilisateur" maxlength="20" style="height:25px;background-color: rgb(1, 0, 0); border-radius: 5px;" required> </input><br>
+                <br/>
+                <label>Mot de passe :</label>
+                <input type="password" id="password" placeholder = "Mot de passe" style="height:25px;background-color: rgb(0, 0, 0); border-radius: 5px;" required></input><br>
+                <br/>
+                <input type="submit" value="CONFIRMER" style="width: 20%;height:30px;background-color: rgb(6, 1, 1);color:rgba(240, 233, 233, 0.733); border-radius: 10px; border: 4px solid #030202">
+            </form>
+        </div>
+
+        <button onclick="document.location=`http://localhost:4000/register`"
+            style=" height:30px;background-color: rgb(4, 1, 1);color:rgba(240, 235, 235, 0.733); border-radius: 10px; border: 4px solid #0c0303;width: 20%">S'INSCRIRE</button>
+        <br/>
+        <br><br><span id="response" style="color: #b85858"></span>
+
+    </div>
+</body>
+
+<div id="includedContent"></div>
+
+<script>
+
+    // Verification si l'utilisateur est connecté
+    $.ajax({
+        url: "http://localhost:4100/get_user",
+        type: "GET",
+        success: function (data) {
+            if (data.user != null) {
+                alert('You are already logged in');
+                window.location.href = "http://localhost:4000/tosum";
+            }
+        }
+    });
+
+
+    // On envoie les données à l'API Auth qui vérifie si ca correspond bien
+    function submit_response() {
+
+        // Appel de l'API auth
+        $.ajax({
+            url: "http://localhost:4100/check_login",
+            type: "POST",
+            data: {
+                'user': $("#user").val(),
+                'password': $("#password").val()
+            },
+            success: function (data) {
+                if (data.status == 'fail') {
+                    document.getElementById('response').innerHTML = data.err
+                    return false;
+                }
+
+                window.location.href = "http://localhost:4000/tosum";
+            }
+        })
+        return false;
+    }
+
+</script>
+<footer>
+    <div style="font-size: 20px; text-align: center; padding-top: 20%">
+        <h5 id="mentions">&copy; Octobre 2022 TOSUM par
+            <a href="mailto:lahmarfedi@cy-tech.fr" title="Envoyer un mail">Fedi LAHMAR</a> &amp; <a
+                href="mailto:delagesjulien@cy-tech.fr" title="Envoyer un mail">Julien DELAGES</a>
+            ,  CY TECH - ING3 IA
+        </h5>
+    </div>
+</footer>
+</html>

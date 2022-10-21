@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <head>
+        <link rel="stylesheet" href="/static/stylesheet/style.css">
+    </head>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<body>
+    <img src="/static/images/TOSUM.png" alt="Logo" width="100" height="100" class="center"><br></br>
+    <div align="center">
+        <button onclick="document.location=`http://localhost:4000/score`">Score</button><br></br>
+    </div>
+    <div id="game-board"></div>
+    <div id="keyboard-cont">
+        <div class="first-row">
+            <button class="keyboard-button">a</button>
+            <button class="keyboard-button">z</button>
+            <button class="keyboard-button">e</button>
+            <button class="keyboard-button">r</button>
+            <button class="keyboard-button">t</button>
+            <button class="keyboard-button">y</button>
+            <button class="keyboard-button">u</button>
+            <button class="keyboard-button">i</button>
+            <button class="keyboard-button">o</button>
+            <button class="keyboard-button">p</button>
+        </div>
+        <div class="second-row">
+            <button class="keyboard-button">q</button>
+            <button class="keyboard-button">s</button>
+            <button class="keyboard-button">d</button>
+            <button class="keyboard-button">f</button>
+            <button class="keyboard-button">g</button>
+            <button class="keyboard-button">h</button>
+            <button class="keyboard-button">j</button>
+            <button class="keyboard-button">k</button>
+            <button class="keyboard-button">l</button>
+            <button class="keyboard-button">m</button>
+        </div>
+        <div class="third-row">
+            <button class="keyboard-button">Del</button>
+            <button class="keyboard-button">w</button>
+            <button class="keyboard-button">x</button>
+            <button class="keyboard-button">c</button>
+            <button class="keyboard-button">v</button>
+            <button class="keyboard-button">b</button>
+            <button class="keyboard-button">n</button>
+            <button class="keyboard-button">Enter</button>
+        </div>
+    </div>
+    <script src="/static/scripts/tosum.js"></script>
+    <div align="center">
+        <button onclick="document.location=`http://localhost:4100/logout`">Log out</button><br></br>
+    </div>
+</body>
+    <footer>
+        <div style="font-size: 20px; text-align: center; padding-top: 20%">
+            <h5 id="mentions">&copy; Octobre 2022 TOSUM par
+                <a href="mailto:lahmarfedi@cy-tech.fr" title="Envoyer un mail">Fedi LAHMAR</a> &amp; <a
+                    href="mailto:delagesjulien@cy-tech.fr" title="Envoyer un mail">Julien DELAGES</a>
+                ,  CY TECH - ING3 IA
+            </h5>
+        </div>
+    </footer>
+</html>
