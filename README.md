@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/JulienDelages/Tosum">
-    <img src="images/TOSUM.png" alt="Logo" width="100" height="100">
+    <img src="tosum_app/static/images/TOSUM.png" alt="Logo" width="100" height="100">
   </a>
 
 <h3 align="center">TOSUM</h3>
@@ -17,31 +17,63 @@
 ### Description 
 
 Microservice course's project on reproducing the <a href="https://sutom.nocle.fr"><strong>SOTUM</strong></a> website.
-
+<br>
+This project is composed by 3 micro-services:
+* A login api that allow the user to create or log in into an account.
+#### Authentification
+Here is the sequence diagram explaining how the authentification works.
 ```mermaid
-sequenceDiagram;
-    Client->>+Server: /;
-    Server->>+Client: index;
-    Client->>Server:/word;
-    Server->>Client:Word_TO_GUESS;
-    Note left of Client: Guessing;
-    Client->>Client: Guessing and storing info to localstorage;
-    Client->>Server:score.html;
-    Server->>Client: score.html;
-    Client->>Client: load score from local storage;
-    Client->>front_secu: /;
-    front_secu->>Client: /login.html;
-    Client-->front_secu: login /password;
-    front_secu->>DB_SECURITE: login /password;
-    DB_SECURITE->>front_secu: OK;
-    note right of front_secu: storing Client in session;
-    front_secu->>Client: OK;
-    Client->>front_secu:liste de mes comptes;
-    front_secu->>server_compte:liste des comptes + client issu de la session;
-    server_compte->>DB_compte:liste des comptes + client;
-    DB_compte->>server_compte: liste;
-    server_compte->>front_secu:liste;
-    front_secu->>Client:liste;
+sequenceDiagram
+    Client->>+Log in Page: Gives username/login
+    Log in Page->>+auth.js: /get_user
+    auth.js->>auth.js: Check user info (/check_login)
+    alt login is correct
+        auth.js->>+Client: Redirects to TOSUM app
+    else not Logged in
+        auth.js->>+Client: Redirects to register page
+    end
+    Client->>+Register Page: Gives username/login
+    Register Page->>+auth.js: /get_user
+    auth.js->>auth.js: Check user info
+    alt User info already exist
+        auth.js->>+Client: Redirects to Log in page
+    else User info do not exist
+        auth.js->>auth.js: Create a new user (/register)
+        score.js->>auth.js: Create a new user info (/registerscore)
+        auth.js->>+Client: Redirects to TOSUM app
+    end
+```
+* The TOSUM app which consist of the reproduction of the MOTUS or WORDLE game. Each day you have a random word to find with a given amount of try. If the word you entered has a letter at the right place, its color become green, if it is in the word but not at the right place, its color become yellow, otherwise its stays gray.
+#### TOSUM game
+Here is the sequence diagram explaining how the game works.
+```mermaid
+sequenceDiagram
+    auth.js->>+index.js: Get the user id (/get_user)
+    Client->>+Client: Wait for input
+    Client->>+TOSUM app: Enter a word
+    TOSUM app->>+index.js: Look at the daily word (/word)
+    index.js->>+index.js: Compare the two words
+    alt The words are identic
+        index.js->>+score.js: Insert the new game in the user info (/add_score)
+        index.js->>+TOSUM app: Congrats the user the game end
+    else The words are not the same
+        alt There are remaining guesses
+            Client->>+Client: Wait for input
+        else There is no remaining guess
+            index.js->>+score.js: Insert the new game in the user info (/add_score)
+        end
+    end
+```
+
+* A score api that shows the user its statistics from his past games.
+#### Score
+Here is the sequence diagram explaining how the statistic api works.
+```mermaid
+sequenceDiagram
+    auth.js->>+node.js: Get the user id (/get_user)
+    Client->>+Score page: Goes
+    Score page->>+node.js: Ask for the history of games (/get_user_information)
+    node.js->>+Score page: Gives the history of games
 ```
 
 ### Installation
@@ -50,15 +82,13 @@ sequenceDiagram;
     ```sh
     git clone https://github.com/JulienDelages/Tosum.git
     ```
-2. Install NPM packages
-    ```sh
-    npm install
-    ```
+2. Make sure to download docker <a href="https://docs.docker.com/desktop/install/windows-install/"><strong>here</strong></a>    
+    
 3. Mount the app
     ```
-    node tosum.js
+    docker-compose up -d
     ``` 
-4. Go to http://localhost:3000
+4. Go to http://localhost:4000
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

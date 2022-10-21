@@ -1,0 +1,38 @@
+{
+	"tosum": {
+		"password": "b48e7ce2e482f8c912a6b201eea109b449821ad45da27f91f8da12e156d2f58f",
+		"last_game": "10/21/2022"
+	},
+	"Fedi": {
+		"password": "45591c70c8b034bcb1078fd039982c0815f36931afaa7b867f4725d1c6fba404",
+		"last_game": "10/21/2022"
+	},
+	"FdiLmr": {
+		"password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+		"last_game": "10/21/2022"
+	},
+	"Julien": {
+		"password": "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
+		"last_game": "10/21/2022"
+	},
+	"delages": {
+		"password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+		"last_game": ""
+	},
+	"judelages": {
+		"password": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
+		"last_game": ""
+	},
+	"judel": {
+		"password": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
+		"last_game": ""
+	},
+	"delagesjul": {
+		"password": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
+		"last_game": ""
+	},
+	"judela": {
+		"password": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
+		"last_game": ""
+	}
+}
